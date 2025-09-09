@@ -10,4 +10,5 @@ COPY --chown=472:472 dashboards/   /var/lib/grafana/dashboards/
 # กลับไปใช้ user grafana
 USER grafana
 
-CMD ["grafana-server","--homepath=/usr/share/grafana","--config=/etc/grafana/grafana.ini","--packaging=docker","--http-port=${PORT}","--wait-for-port=30s"]
+CMD ["grafana-server","--homepath=/usr/share/grafana","--config=/etc/grafana/grafana.ini","--packaging=docker","--http-port=${PORT}","--wait-for-port=60s"]
+
