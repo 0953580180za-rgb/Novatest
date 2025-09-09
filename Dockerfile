@@ -5,10 +5,9 @@ COPY --chown=472:472 provisioning/ /etc/grafana/provisioning/
 COPY --chown=472:472 dashboards/   /var/lib/grafana/dashboards/
 USER grafana
 
-CMD grafana-server \
+CMD sh -c 'grafana-server \
   --homepath=/usr/share/grafana \
   --config=/etc/grafana/grafana.ini \
   --packaging=docker \
-  --http-port=$PORT \
-  --address=0.0.0.0
+  --configOverrides=server.http_addr=0.0.0.0,server.http_port=${PORT}'
 
