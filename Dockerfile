@@ -14,8 +14,4 @@ RUN chown -R grafana:grafana /etc/grafana /var/lib/grafana
 USER grafana
 
 # รัน grafana โดยให้ bind กับพอร์ตที่ Heroku ส่งให้
-CMD ["grafana-server",
-     "--homepath=/usr/share/grafana",
-     "--config=/etc/grafana/grafana.ini",
-     "--packaging=docker",
-     "--http-port=${PORT}"]
+CMD ["grafana-server","--homepath=/usr/share/grafana","--config=/etc/grafana/grafana.ini","--packaging=docker","--http-port=${PORT}"]
