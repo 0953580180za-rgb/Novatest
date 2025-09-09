@@ -1,0 +1,9 @@
+build:
+  docker:
+    web: Dockerfile
+
+run:
+  web: grafana-server --homepath=/usr/share/grafana \
+    --config=/etc/grafana/grafana.ini \
+    --packaging=docker \
+    --http-port=$PORT
