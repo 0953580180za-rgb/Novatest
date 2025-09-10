@@ -1,1 +1,1 @@
-web: grafana-server --config=/app/conf/grafana.ini --homepath=/app --packaging=heroku --http-port=$PORT
+web: grafana-server --homepath=/app --config=/app/conf/grafana.ini --packaging=heroku --http-port=$PORT --http-addr=0.0.0.0
