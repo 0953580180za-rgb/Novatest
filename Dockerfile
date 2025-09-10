@@ -1,11 +1,10 @@
 FROM grafana/grafana:latest
 
-# คัดลอก config ของเราไปทับตำแหน่งที่ Grafana ใช้จริง
+# copy config grafana.ini
 COPY conf/grafana.ini /etc/grafana/grafana.ini
 
-# คัดลอกสคริปต์เริ่มต้น
+# copy start.sh
 COPY start.sh /start.sh
-RUN chmod +x /start.sh
 
-# ให้ container รันผ่านสคริปต์ (ซึ่งจะ export GF_SERVER_HTTP_PORT ให้)
+# start container ใช้ start.sh
 CMD ["/start.sh"]
