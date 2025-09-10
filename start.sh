@@ -1,17 +1,9 @@
 #!/bin/sh
-# Heroku provides $PORT and $DATABASE_URL automatically
-export GF_SERVER_HTTP_PORT=${PORT}
-export GF_SERVER_ROOT_URL=%(protocol)s://%(domain)s/
+# บังคับให้ Grafana ใช้พอร์ต $PORT ของ Heroku และฟังทุก interface
+export GF_SERVER_HTTP_PORT="${PORT}"
+export GF_SERVER_HTTP_ADDR="0.0.0.0"
 
-# Persist users/dashboards in Postgres (Heroku add-on)
-export GF_DATABASE_TYPE=postgres
-export GF_DATABASE_URL=${DATABASE_URL}
+# (ถ้าคุณจะใช้ Postgres ในภายหลัง ไม่ต้องแก้ตรงนี้)
 
-# Security
-export GF_AUTH_ANONYMOUS_ENABLED=false
-
-# Optional: install plugins on boot (comma-separated IDs)
-# export GF_INSTALL_PLUGINS="grafana-clock-panel,grafana-piechart-panel"
-
-# Run the official entrypoint
-exec /run.sh
+# รัน Grafana ด้วย config ที่เราคัดลอกไว้
+exec grafana-server \--homepath=/usr/share/grafana \--config=/etc/grafana/grafana.ini \--packaging=docker
